@@ -1,10 +1,6 @@
-// OOP345 Workshop 9 - Smart Pointers
+// Smart Pointers
 // File	 w9.cpp
-// Date	2016/Mar.18
-// Author	EUNSUN KIM / OOP345-SAB/SAAL
-// Description
-// completed w9::List<w9::Product> merge(const w9::List<w9::Description>& desc,
-//               const w9::List<w9::Price>& price) part
+// Author	EUNSUN KIM 
 //////////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
@@ -34,10 +30,6 @@ to the list's += operator.  */
 		{
 			if (desc[i].code == price[j].code)
 			{
-				//for part 1
-				//w9::Product* p = new w9::Product(desc[i].desc, price[j].price);
-
-				//for part 2 
 				std::unique_ptr<w9::Product> p(new w9::Product(desc[i].desc, price[j].price));
 				p->validate();
 				
