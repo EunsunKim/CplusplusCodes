@@ -25,37 +25,3 @@ int main(){
 	cout << Apoint << " " << Bpoint;
     return 0;
 }
-// code using map 
-/*
-
-#include <map>
-#include <iostream>
-#include <string>
-
-int main(){
-    int a0, a1, a2 , b0, b1, b2;
-	cin >> a0 >> a1 >> a2;	
-	cin >> b0 >> b1 >> b2;
-    
- map<string, int> mymap;
-
-	mymap.insert(pair<string, int>("a0", a0));
-	mymap.insert(pair<string, int>("a1", a1));
-	mymap.insert(pair<string, int>("a2", a2));
-	mymap.insert(pair<string, int>("b0", b0));
-	mymap.insert(pair<string, int>("b1", b1));
-	mymap.insert(pair<string, int>("b2", b2));
-
-	int Apoint=0, Bpoint=0;
-
-	if (mymap.at("a0") > mymap.at("b0")) Apoint++;
-	else if(mymap.at("a0") < mymap.at("b0")) Bpoint++;
-	if (mymap.at("a1") > mymap.at("b1")) Apoint++;
-	else if (mymap.at("a1") < mymap.at("b1")) Bpoint++;
-	if (mymap.at("a2") > mymap.at("b2")) Apoint++;
-	else if (mymap.at("a2") < mymap.at("b2")) Bpoint++;
-	
-	cout << Apoint <<" "<< Bpoint ;   
-    return 0;
-}
-*/
