@@ -26,94 +26,88 @@ namespace w8
 		int NumberOfDecimals;  
 
 	public:
-		/* a DataTable object receives a reference to the file stream that holds the data values,
-		the field width for displaying the data and the number of decimals to display.
-		The object retrieves the data values from the file and stores them in its instance variables.*/
+	/* a DataTable object receives a reference to the file stream that holds the data values,
+	the field width for displaying the data and the number of decimals to display.
+	The object retrieves the data values from the file and stores them in its instance variables.*/
 
-		DataTable(std::ifstream& is, int FW, int ND): FieldWidth(FW), NumberOfDecimals(ND)
-    {
-			T xx, yy;
-			if (is) 
-      {
-				while (!is.eof())
-        {
-					if (is >> xx >> yy)	
-          {
-						x.push_back(xx);
-						y.push_back(yy);
-					}						
-				}
-			}		
-		}
+	DataTable(std::ifstream& is, int FW, int ND): FieldWidth(FW), NumberOfDecimals(ND)
+    	{
+		T xx, yy;
+		if (is) {
+			while (!is.eof())
+        		{
+				if (is >> xx >> yy)	{
+					x.push_back(xx);
+					y.push_back(yy);
+				}						
+			}
+		}		
+	}
 
-		T mean() const //returns the mean value of the dependent coordinate
-		{   
-			T sum = std::accumulate(y.begin(), y.end(), (T)0);  // reference textbook 163 page
-			T number = y.size();
-			return sum / number;
-		}
+	T mean() const //returns the mean value of the dependent coordinate
+	{   
+		T sum = std::accumulate(y.begin(), y.end(), (T)0);  // reference textbook 163 page
+		T number = y.size();
+		return sum / number;
+	}
 
-		T sigma() const  //returns the standard deviation of the dependent coordinates
-		{  
-			T y_mean = mean();
-			T number = y.size();
+	T sigma() const  //returns the standard deviation of the dependent coordinates
+	{  
+		T y_mean = mean();
+		T number = y.size();
+		std::vector<T> dev(number);
+		/* TextBook 161, 162, 163+web page
+		transform : The transform functions templates perform programmer-specified transformations
+		on the elements of a sequence.  A function object defines the transformation. 
 
-			std::vector<T> dev(number);
+		https://msdn.microsoft.com/en-us/library/391xya49.aspx
+		std::transform:
+		Applies a specified function object to each element in a source range
+		or to a pair of elements from two source ranges
+		and copies the return values of the function object into a destination range. */
+		//ssd = √{ [ Σi(zi - zmean)2 ] / (n - 1) }
+		
+		std::transform(y.begin(), y.end(), dev.begin(), std::bind2nd(std::minus<T>(), y_mean));
+		//http://www.cplusplus.com/reference/functional/bind2nd/?kw=bind2nd
+		//Return function object with second parameter bound
 
-			/* TextBook 161, 162, 163+web page
-			transform : The transform functions templates perform programmer-specified transformations
-			on the elements of a sequence.  A function object defines the transformation. 
+		T sqrt_sum = std::inner_product(dev.begin(), dev.end(), dev.begin(), (T)0);
+		return (T)std::sqrt(sqrt_sum / (number - 1));
+	}
 
-			https://msdn.microsoft.com/en-us/library/391xya49.aspx
-			std::transform:
-			Applies a specified function object to each element in a source range
-			or to a pair of elements from two source ranges
-			and copies the return values of the function object into a destination range. */
-			//ssd = √{ [ Σi(zi - zmean)2 ] / (n - 1) }
+	T median() const //returns the median value of the dependent coordinate
+	{
+		std::vector<T> RandomAccessIterator_sort = this->y;
+		std::sort(RandomAccessIterator_sort.begin(), RandomAccessIterator_sort.end());
+		T number = y.size();
+		return RandomAccessIterator_sort[number / 2];
+	}
+	void regression(T& slope, T& y_intercept) const //returns the slope and intercept for the data set
+	{
+		T xy_sum = std::inner_product(x.begin(), x.end(), y.begin(), (T)0);
+		T x_sum = std::accumulate(x.begin(), x.end(), (T)0);
+		T y_sum = std::accumulate(y.begin(), y.end(), (T)0);
+		T sqrt_x_sum = std::inner_product(x.begin(), x.end(), x.begin(), (T)0);
+		T number = y.size();
+		//slope       = [ n ( Σixiyi ) - Σixi Σiyi ] / [ n (Σixi2) - (Σixi)2 ]
+		//y_intercept = [ Σiyi - slope * Σixi ] / n
 
-			std::transform(y.begin(), y.end(), dev.begin(), std::bind2nd(std::minus<T>(), y_mean));
-			//http://www.cplusplus.com/reference/functional/bind2nd/?kw=bind2nd
-			//Return function object with second parameter bound
+		slope = (number * xy_sum - x_sum * y_sum) / (number * sqrt_x_sum - x_sum * x_sum);
+		y_intercept = (y_sum - slope * x_sum) / number;
+	}
+	void display(std::ostream& os) const //displays the data pairs as shown below
+	{
+		os << std::setprecision(NoofDecimals) << std::fixed;
+		os << std::setw(FieldWidth) << 'x' << std::setw(FieldWidth) << 'y' << std::endl;
 
-			T sqrt_sum = std::inner_product(dev.begin(), dev.end(), dev.begin(), (T)0);
-			return (T)std::sqrt(sqrt_sum / (number - 1));
-		}
-
-		T median() const //returns the median value of the dependent coordinate
-		{
-			std::vector<T> RandomAccessIterator_sort = this->y;
-			std::sort(RandomAccessIterator_sort.begin(), RandomAccessIterator_sort.end());
-			T number = y.size();
-
-			return RandomAccessIterator_sort[number / 2];
-		}
-		void regression(T& slope, T& y_intercept) const //returns the slope and intercept for the data set
-		{
-			T xy_sum = std::inner_product(x.begin(), x.end(), y.begin(), (T)0);
-			T x_sum = std::accumulate(x.begin(), x.end(), (T)0);
-			T y_sum = std::accumulate(y.begin(), y.end(), (T)0);
-			T sqrt_x_sum = std::inner_product(x.begin(), x.end(), x.begin(), (T)0);
-			T number = y.size();
-
-			//slope       = [ n ( Σixiyi ) - Σixi Σiyi ] / [ n (Σixi2) - (Σixi)2 ]
-			//y_intercept = [ Σiyi - slope * Σixi ] / n
-
-			slope = (number * xy_sum - x_sum * y_sum) / (number * sqrt_x_sum - x_sum * x_sum);
-			y_intercept = (y_sum - slope * x_sum) / number;
-		}
-		void display(std::ostream& os) const //displays the data pairs as shown below
-		{
-			os << std::setprecision(NoofDecimals) << std::fixed;
-			os << std::setw(FieldWidth) << 'x' << std::setw(FieldWidth) << 'y' << std::endl;
-
-			for (int i = 0; i < x.size(); i++)
-				os << std::setw(FieldWidth) << x[i] << std::setw(FieldWidth) << y[i] << std::endl;
-		}
+		for (int i = 0; i < x.size(); i++)
+			os << std::setw(FieldWidth) << x[i] << std::setw(FieldWidth) << y[i] << std::endl;
+	}
 		//Your design also overloads the insertion operator as a helper for the DataTable class :		
-		friend std::ostream& operator<<(std::ostream& os, const DataTable& rhs) //inserts the data generated by display()
-		{
-			rhs.display(os);
-			return os;
-		}
-	};	
+	friend std::ostream& operator<<(std::ostream& os, const DataTable& rhs) //inserts the data generated by display()
+	{
+		rhs.display(os);
+		return os;
+	}
+};	
 }
