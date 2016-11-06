@@ -1,11 +1,9 @@
-// OOP345 Workshop8
 // File	DataTable.h
 // Date	2016/Mar.12
-// Author	EUNSUN KIM / OOP345-SAB/SAAL
+// Author	EUNSUN KIM
 // Description
-// OOP345 STL Algorithms
+// STL Algorithms
 ////////////////////////////////////////////
-
 #pragma once
 #include <iostream>
 #include <vector>
