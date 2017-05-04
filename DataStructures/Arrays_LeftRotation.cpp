@@ -40,7 +40,8 @@ int main() {
 	rotate(arr.begin(), arr.begin() + shift, arr.end());   
 
 	// print out content:
-	for (vector<int>::iterator it = arr.begin(); it != arr.end(); it++)
+	//for (vector<int>::iterator it = arr.begin(); it != arr.end(); it++)
+	for( int i : arr)
 		std::cout << *it << ' ';
 	
 	return 0;
