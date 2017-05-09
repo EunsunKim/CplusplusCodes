@@ -22,4 +22,4 @@
    
    [8] Expected Output img.   
      
-      ![Factory Simulator](https://github.com/EunsunKim/My_CplusplusCodeSamples/Task_Simulator/m3.gv.dot.png)
+      ![img](https://github.com/EunsunKim/My_CplusplusCodeSamples/Task_Simulator/m3.gv.dot.png)
