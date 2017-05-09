@@ -22,4 +22,4 @@
    
    [8] Expected Output img.   
      
-      ![img](https://github.com/EunsunKim/My_CplusplusCodeSamples/Task_Simulator/m3.gv.dot.png)
+      ![img](https://raw.githubusercontent.com/EunsunKim/My_CplusplusCodeSamples/Task_Simulator/m3.gv.dot.png)
