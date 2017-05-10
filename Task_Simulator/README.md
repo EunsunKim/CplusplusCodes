@@ -22,7 +22,16 @@
    
    [8] Expected Output img.   
      
-         
+   ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/TaskList_Clean.dat.gv.dot.png?raw=true "Task Simulator")
+   
+   ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/ItemList_Clean.dat.gv.dot.png?raw=true "Item Simulator")
+   
+   
+   ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/CustomerOrders_Clean.dat.gv.dot.png?raw=true "Customer Order Simulator")
+   
+      
    ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/m3.gv.dot.png?raw=true "Factory Simulator")
+   
+   
       
     
