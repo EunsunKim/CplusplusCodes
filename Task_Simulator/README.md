@@ -22,4 +22,7 @@
    
    [8] Expected Output img.   
      
-      <img height = "600" src="https://github.com/EunsunKim/My_CplusplusCodeSamples/Task_Simulator/m3.gv.dot.png" />
+         
+   ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/m3.gv.dot.png?raw=true "Factory Simulator")
+      
+    
