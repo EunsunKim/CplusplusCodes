@@ -20,18 +20,18 @@
    
    [7] Machine
    
-   [8] Expected Output img.   
-     
-   ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/TaskList_Clean.dat.gv.dot.png?raw=true "Task Simulator")
+   [8] Expected Output img.
+   
+     <img src="TaskList_Clean.dat.gv.dot.png" width="400">
+  
    
    ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/ItemList_Clean.dat.gv.dot.png?raw=true "Item Simulator")
    
    
    ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/CustomerOrders_Clean.dat.gv.dot.png?raw=true "Customer Order Simulator")
    
-      
-   ![alt text](https://github.com/EunsunKim/My_CplusplusCodeSamples/blob/master/Task_Simulator/m3.gv.dot.png?raw=true "Factory Simulator")
    
    
+   <img src="m3.gv.dot.png" width="400">
       
     
