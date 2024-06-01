@@ -8,7 +8,7 @@
 
 3. OpenGL          : Shader sources
 
-4. Samples
+4. Samples         : Basic Math Fnctions - Mean, Median, Mode..
 
 5. Task_Simulator  : project simulator program
 
