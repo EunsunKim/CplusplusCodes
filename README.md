@@ -1,6 +1,6 @@
 ### C++ codes
 
-* runtime versions C++, C++11, C++14
+* runtime versions C++
 
 1. DataStructures  : Basic sample codes
 
