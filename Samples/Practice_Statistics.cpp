@@ -43,7 +43,7 @@ int main()
     /* 
     //same result
     double k = numbers[n / 2];
-    double median = (n % 2 == 0) ? (numbers[n/2 - 1] + k)/2 : k/2;
+    double median = (n % 2 == 0) ? ((numbers[(n/2) - 1] + k))/2 : k;
     */
     
     map<int, int> findingMode;
